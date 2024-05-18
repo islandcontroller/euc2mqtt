@@ -124,10 +124,10 @@ class HassioClient:
                 **entity.device.discovery_data
             }
         })
-        self._mqtt.publish(self._discovery_topic(entity), payload).wait_for_publish()
+        self._mqtt.publish(self._discovery_topic(entity), payload, qos=1, retain=True).wait_for_publish()
 
     def unregister(self, entity: HassioEntity) -> None:
-        self._mqtt.publish(self._discovery_topic(entity), '').wait_for_publish()
+        self._mqtt.publish(self._discovery_topic(entity), '', qos=1).wait_for_publish()
 
     def update_availability(self, entity: HassioEntity, available: bool) -> None:
         self._mqtt.publish(self._availability_topic(entity), 'online' if available else 'offline').wait_for_publish()

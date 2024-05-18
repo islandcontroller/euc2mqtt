@@ -74,8 +74,8 @@ class UpdateHandler:
         # Prepare update loop
         self._last_update = 0
 
-    def update(self):
-        data = self._eaton_client.get_data(self._last_update)
+    def update(self, full_update: bool = False):
+        data = self._eaton_client.get_data(0 if full_update else self._last_update)
         if 'lastUpdate' in data:
             # Update reference timestamp
             self._last_update = data['lastUpdate']

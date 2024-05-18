@@ -10,6 +10,7 @@ class DefaultConfig:
     HASSIO_HOST: str = 'homeassistant.local'
     HASSIO_PORT: int = 1883
     INTERVAL: int = 30
+    FULL_UPDATE_INTERVAL: int = 9
 
 def main():
     parser = argparse.ArgumentParser(prog='euc2mqtt', description='MQTT Publisher for Eaton UPS Companion status messages to Home Assistant. See https://github.com/islandcontroller/euc2mqtt for more info!')
@@ -19,6 +20,7 @@ def main():
     parser.add_argument('--username', help='Username for MQTT broker authentication', type=str, default=None)
     parser.add_argument('--password', help='Password fpr MQTT broker authentication', type=str, default=None)
     parser.add_argument('--interval', help='Update interval in seconds', type=int, default=DefaultConfig.INTERVAL)
+    parser.add_argument('--full-update', help='Number of incremental dataset fetches between full updates', type=int, default=DefaultConfig.FULL_UPDATE_INTERVAL)
     parser.add_argument('--logfile', help='Output log messages to a file', type=str, default=None)
     parser.add_argument('--verbose', help='Enable verbose logging', action='store_true')
     args = parser.parse_args()
@@ -48,9 +50,15 @@ def main():
 
     logging.log(logging.INFO, f"Starting update loop ({args.interval}s update interval)...")
     handler.start()
+    update_count = 0
     while True:
         try:
-            handler.update()
+            logging.log(logging.DEBUG, f"Fetching {'full' if update_count == 0 else 'incremental'} dataset")
+            handler.update(update_count == 0)
+            if update_count == 0:
+                update_count = max(args.full_update, 0)
+            else:
+                update_count -= 1
             time.sleep(args.interval)
         except KeyboardInterrupt:
             logging.log(logging.WARNING, 'Caught KeyboardInterrupt, exiting...')

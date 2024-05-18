@@ -18,7 +18,7 @@ def main():
     parser.add_argument('--mqtt', help='MQTT broker hostname and port (hostname[:port])', type=str, default=f"{DefaultConfig.HASSIO_HOST}:{DefaultConfig.HASSIO_PORT}")
     parser.add_argument('--euc', help='Eaton UPS Companion hostname and port (hostname[:port])', type=str, default=f"{DefaultConfig.EUC_HOST}:{DefaultConfig.EUC_PORT}")
     parser.add_argument('--username', help='Username for MQTT broker authentication', type=str, default=None)
-    parser.add_argument('--password', help='Password fpr MQTT broker authentication', type=str, default=None)
+    parser.add_argument('--password', help='Password for MQTT broker authentication', type=str, default=None)
     parser.add_argument('--interval', help='Update interval in seconds', type=int, default=DefaultConfig.INTERVAL)
     parser.add_argument('--full-update', help='Number of incremental dataset fetches between full updates', type=int, default=DefaultConfig.FULL_UPDATE_INTERVAL)
     parser.add_argument('--logfile', help='Output log messages to a file', type=str, default=None)

@@ -29,7 +29,7 @@ As mosquitto requires authentication, I heavily suggest creating a new user for 
 
 ### Get the application
 
-Windows binaries are provided on the [GitHub Releases](https://github.com/islandcontroller/euc2mqtt/releases) page.**
+Windows binaries are provided on the [GitHub Releases](https://github.com/islandcontroller/euc2mqtt/releases) page.
 
 If you prefer to use your own Python insallation, a pre-built package is hosted on [PyPI](https://pypi.org/project/euc2mqtt/) and can be installed and updated using the [`pip`](https://pip.pypa.io/en/stable/getting-started/) utility:
 

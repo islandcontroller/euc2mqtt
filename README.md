@@ -96,6 +96,20 @@ options:
     - Select *If the task is already running: Do not start a new instance*
 6. Click *OK*. You will be prompted for a username and password to run the task as.
 
+## Configuring bind address for Eaton UPS Companion
+
+> [!WARNING]
+> Exposing the EUC service may pose a security risk.
+
+> [!NOTE]
+> When euc2mqtt is run on the same host as EUC, it is not required to expose the EUC service.
+
+1. Start a `notepad` instance with Admin privileges
+2. Open `C:\Program Files (x86)\Eaton\UPSCompanion\configs\config.js`
+3. Edit the "`httpServers`" line to listen on all interfaces:
+
+        "httpServers": {"http": {"port": 4679, "hostname": "0.0.0.0"}}, 
+
 ## Legal Information
 
 The contents of this repository are licensed under the MIT License. The full license text is provided in the [`LICENSE`](LICENSE) file.

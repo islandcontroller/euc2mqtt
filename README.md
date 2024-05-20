@@ -17,6 +17,9 @@ The following quick start guide should get you up and running from a blank Homea
 3. Search for *Mosquitto broker* and select the result
 4. Click on *Install*
 
+> [!NOTE]
+> When using the *Mosquitto broker* Add-on, your MQTT broker hostname will be the same as your Homeassistant's, e.g. "`homeassistant.local`".
+
 ### Create a new Homeassistant user for data ingest
 
 As mosquitto requires authentication, I heavily suggest creating a new user for data ingest.
@@ -72,4 +75,31 @@ options:
   --full-update FULL_UPDATE
                         Number of incremental dataset fetches between full updates
   --logfile LOGFILE     Output log messages to a file
-  --verbose             Enable verbose logging```
+  --verbose             Enable verbose logging
+```
+
+## Running as a Windows Task
+
+1. Open *Task Scheduler* and select *Create New Task...*
+2. Select the following options on the *General* tab:
+    - Check *Run whether user is logged in or not*
+    - Uncheck *Do not store password*
+3. On the *Triggers* tab, create a "At startup" trigger
+4. On the *Actions* tab, add the standalone application as a program to run:
+    - Action: *Start a program*
+    - Program/Script: (Navigate to your `euc2mqtt.exe` here)
+    - Add arguments: `--mqtt <broker hostname> --username <user> --password <password>`
+5. On the *Settings* tab, select the following options:
+    - Check *Allow task to be run on demand*
+    - Select *If task fails, restart every: 1 minute*
+    - Uncheck *Stop the task if it runs longer than: ...*
+    - Select *If the task is already running: Do not start a new instance*
+6. Click *OK*. You will be prompted for a username and password to run the task as.
+
+## Legal Information
+
+The contents of this repository are licensed under the MIT License. The full license text is provided in the [`LICENSE`](LICENSE) file.
+
+    SPDX-License-Identifier: MIT
+
+"Eaton" is a trademark of Eaton Corporation. "Windows" is a trademark of Microsoft Corporation. All trademarks are property of their respective owners.

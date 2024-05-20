@@ -4,7 +4,7 @@
 
 A tool for publishing status data from a local Eaton UPS Companion service to Homeassistant.
 
-<p align="center"><img src="scr.png"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/islandcontroller/euc2mqtt/master/scr.png"/></p>
 
 ## Quick Start
 

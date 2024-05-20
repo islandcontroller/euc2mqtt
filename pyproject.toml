@@ -40,7 +40,7 @@ Test = [
 [project.urls]
 Repository = "https://github.com/islandcontroller/euc2mqtt.git"
 Issues = "https://github.com/islandcontroller/euc2mqtt/issues/"
-Documentation = "https://github.com/islandcontroller/euc2mqtt/wiki/"
+Documentation = "https://github.com/islandcontroller/euc2mqtt?tab=readme-ov-file"
 
 [project.scripts]
 euc2mqtt = "euc2mqtt.CLI:main"
